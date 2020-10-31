@@ -9,9 +9,20 @@ namespace UsingResXFiles
     {
         static void Main(string[] args)
         {
-            var resourceManager = new ResourceManager("Resource1", Assembly.GetExecutingAssembly());
-
             int read = Convert.ToInt32(UsingResXFiles.Resource1.String3);
+
+
+            //iterate through all resx files
+            foreach(var item in System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceNames())
+            {
+                WriteLine(item);
+            }
+
+
+            //get resource by string variable
+            string resxPath = "UsingResxFiles.Resource1";
+            ResourceManager rm = new ResourceManager(resxPath, Assembly.GetExecutingAssembly());
+            WriteLine(rm.GetString("String1"));
 
             //string read = (UsingResXFiles.Resource1.String3);
 
